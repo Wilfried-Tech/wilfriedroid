@@ -1,0 +1,31 @@
+@import "config";
+
+:host {
+  height: $bottom-nav-bar-height;
+}
+
+.phone-nav-btn {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, #fff5, #fff9);
+}
+
+.nav-btn {
+  color: white;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+
+  .nav-btn-icon {
+    transform: scale(0.7);
+
+    &.back-icon {
+      transform: rotate(-90deg) scale(0.7);
+    }
+  }
+}

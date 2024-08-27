@@ -1,0 +1,28 @@
+<div class="status-bar">
+  <ul class="status-bar-items">
+    <li>
+      <span class="status-bar-time">{{ clockService.date$|async|date:'hh:mm' }}</span>
+    </li>
+    <li>
+      <span *ngIf="this.batteryService.change$|async as battery" class="battery">
+        <span class="battery-value"
+              [style.width]="battery.level+'%'"
+              [ngClass]="{
+        'charging': battery.charging,
+        'low': (battery.level <=15) && battery.charging
+        }">
+
+        </span>
+          <span [ngClass]="{'active': battery.charging}" class="battery-charge-indicator">
+            <ng-icon [svg]="ionFlash" [size]="iconSize"/>
+          </span>
+      </span>
+    </li>
+    <li>
+      <span class="sim-signal">
+        <span class="signal-speed">h</span>
+        <ng-icon [svg]="ionCellular" [size]="iconSize"/>
+      </span>
+    </li>
+  </ul>
+</div>

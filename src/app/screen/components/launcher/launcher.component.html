@@ -1,0 +1,45 @@
+<ng-container *ngIf="configs$| async as config">
+  <div #windowSwiper class="window-swiper-container"
+       [@launcherScroll]="{value: scrollState, params: swiperParams}"
+       [ngStyle]="{'--swiper-slides-no': config.slides.length}"
+       (pan)="onSlidesPan($event)">
+    <ng-container *ngFor="let slide of config.slidesArea; index as index">
+      <div class="window-swiper-slide">
+        <!--[@launcherScrollChild]="{value: slidesState[index], params: slideParams[index]}"-->
+        <div class="slide-grid" [ngClass]="'grid-'+index" [style.grid-template-areas]="slide.area">
+          <ng-container *ngFor="let app of slide.apps">
+            <ng-container *ngTemplateOutlet="app.isWidget? widgetTemplate: appTemplate; context:{$implicit:app}"/>
+          </ng-container>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <div class="pagination">
+    <ng-container *ngFor="let i of config.bullets">
+      <div class="pagination-bullet" [ngClass]="{'active': i == config.current, 'main': i == config.mainIndex}"></div>
+    </ng-container>
+  </div>
+  <div class="static-window-menu">
+    <div *ngIf="config.staticArea as area" [style.grid-template-areas]="area.area" class="static-grid">
+      <ng-container *ngFor="let app of area.apps">
+        <ng-container *ngTemplateOutlet="appTemplate; context:{$implicit: app}"/>
+      </ng-container>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #appTemplate let-app>
+  <div class="cell" [style.grid-area]="app.id">
+    <div class="app">
+      <div class="app-launcher-icon" matRipple>
+        <img [ngSrc]="app.icon" priority fill [alt]="app.name"/>
+      </div>
+      <div class="app-title">{{ app.name }}</div>
+    </div>
+  </div>
+</ng-template>
+<ng-template #widgetTemplate let-widget>
+  <div class="widget" [style.grid-area]="widget.id">
+    <div></div>
+  </div>
+</ng-template>

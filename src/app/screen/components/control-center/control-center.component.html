@@ -1,0 +1,30 @@
+<div #controlCenter class="control-center">
+  <div class="header">
+    <div class="date-time">
+      <div class="time">{{ clockService.date$|async|date:timeFormat }}</div>
+      <div class="date">{{ clockService.date$|async|date:'EEE dd MMM' }}</div>
+    </div>
+    <div class="actions">
+      <button mat-icon-button>
+        <ng-icon class="settings" [svg]="matSettingsOutline"/>
+      </button>
+    </div>
+  </div>
+  <div class="settings-options">
+    <div class="options">
+      <div class="option" *ngFor="let item of items$|async" [ngClass]="{'active': item.active}"
+           (click)="item.active = !item.active">
+        <div matRipple class="option-icon" [ngClass]="[item.key]">
+          <ng-icon size="24" [svg]="getItemIcon(item)"/>
+        </div>
+        <span class="option-name">{{ item.name }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="brightness-adjust">
+    <ng-icon [svg]="matBrightness7Sharp"/>
+    <mat-slider class="brightness-slider" [min]="0" [max]="100" discrete [step]="1">
+      <input matSliderThumb value="100"/>
+    </mat-slider>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+.toolbar {
+  display: flex;
+  flex-direction: column;
+  box-shadow: #0005 1px 1px 3px;
+  width: min-content;
+
+  .toolbar-btn {
+    margin: 5px;
+
+    &.size-adjust > :first-child {
+      transform: rotate(90deg);
+      display: none;
+    }
+  }
+
+}

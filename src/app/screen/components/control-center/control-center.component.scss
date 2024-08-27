@@ -1,0 +1,132 @@
+@import "config";
+
+:host {
+  --control-center-translate-y: -100%;
+  --control-center-backdrop-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: var(--control-center-backdrop-color);
+  z-index: 1000;
+  touch-action: none;
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+.control-center {
+  background-color: #ffff;
+  width: 97%;
+  border-radius: 20px 20px 10px 10px;
+  margin: 0 auto;
+  text-align: center;
+  transition: all 0.5s ease-in;
+  transform: translateY(var(--control-center-translate-y));
+}
+
+.header {
+  width: 95%;
+  margin: 0 auto;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .time {
+    font-size: large;
+    font-weight: bolder;
+    letter-spacing: 1px;
+  }
+
+  .date {
+    font-size: x-small;
+    text-transform: capitalize;
+  }
+
+  .actions {
+    display: flex;
+
+    > * {
+      margin-left: 7px;
+      transform: scale(0.8);
+    }
+  }
+
+}
+
+.settings-options {
+  margin: 7px;
+
+  .options {
+    $item-height: calc($control-center-item-icon-size + 10px);
+    display: grid;
+    width: 100%;
+    gap: 10px 5px;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    justify-content: center;
+
+    * {
+      margin: 0 auto;
+    }
+
+    .option {
+      color: darkgray;
+      display: block;
+      text-align: center;
+      align-self: stretch;
+
+      .option-icon {
+        border-radius: 10px;
+        width: $control-center-item-icon-size;
+        height: $control-center-item-icon-size;
+        min-height: $control-center-item-icon-size;
+        background-color: lightgray;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 3px;
+        box-sizing: border-box;
+        color: black;
+        transition: background-color 250ms ease, transform 1s;
+
+        &.network {
+          transform: rotate(90deg);
+        }
+      }
+
+      &:active {
+        transform: scale(0.9);
+      }
+
+      &.active {
+        .option-icon {
+          background-color: dodgerblue;
+        }
+      }
+
+      .option-name {
+        width: 100%;
+        display: inline-block;
+        white-space: wrap;
+        text-overflow: ellipsis;
+        text-transform: capitalize;
+        font-size: xx-small;
+      }
+    }
+  }
+}
+
+.brightness-adjust {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+
+  .brightness-slider {
+    flex-grow: 1;
+  }
+
+}

@@ -1,0 +1,141 @@
+@import 'config';
+
+:host {
+  text-align: center;
+  user-select: none;
+}
+
+.window-swiper-container {
+  --swiper-slides-no: 1;
+  width: calc(100% * var(--swiper-slides-no));
+  height: 81%;
+  overflow: hidden;
+  display: flex;
+  column-gap: 2px;
+  transition: transform 100ms linear;
+
+  .window-swiper-slide {
+    height: 100%;
+    width: calc(100% / var(--swiper-slides-no));
+    overflow: hidden;
+  }
+}
+
+.slide-grid {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-gap: $launcher-grid-gap;
+  grid-auto-rows: 1fr;
+  grid-auto-columns: 1fr;
+}
+
+
+.cell {
+  align-self: center;
+}
+
+.widget {
+  padding: 10px;
+
+  > :first-child {
+    background-color: darkgrey;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.pagination {
+  height: 4%;
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  column-gap: 7px;
+
+  .pagination-bullet {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    opacity: 0.5;
+
+    &.active {
+      opacity: 1;
+      position: relative;
+
+      &::after {
+        position: absolute;
+        content: '';
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        margin: 1px;
+        border-radius: 50%;
+        background-color: white;
+      }
+    }
+
+    &.main {
+      position: relative;
+    }
+  }
+}
+
+
+.static-window-menu {
+  width: 100%;
+  height: 12%;
+  position: absolute;
+  bottom: 35px;
+
+
+  .static-grid {
+    background: transparent;
+    display: grid;
+    grid-gap: $launcher-grid-gap;
+    text-align: center;
+    padding-top: 4px;
+    height: 100%;
+  }
+}
+
+.app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2px;
+  cursor: pointer;
+
+  .app-launcher-icon {
+    box-sizing: border-box;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 0 auto;
+    width: 45px;
+    height: 45px;
+    background-color: #fff;
+    position: relative;
+
+    .app-launcher-icon img {
+      object-fit: contain;
+    }
+  }
+
+  .app-title {
+    font-size: 11px;
+    font-style: italic;
+    color: #fff;
+    width: 55px;
+    white-space: nowrap;
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    text-transform: capitalize;
+  }
+}

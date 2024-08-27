@@ -1,0 +1,53 @@
+@import "config";
+
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.toolbar {
+  margin-left: 10px;
+}
+
+.phone-layout {
+  width: $phone-width;
+  height: $phone-height;
+  position: relative;
+  margin: 0;
+  border-radius: 20px;
+  padding: 10px 7px 15px;
+  background-color: $phone-color;
+  display: flex;
+  flex-direction: column;
+
+  > :first-child {
+    flex-grow: 1;
+    overflow: hidden;
+  }
+
+  $unit: $phone-height / 15;
+
+  &::after {
+    position: absolute;
+    content: '';
+    right: -3px;
+    top: $unit * 2;
+    width: 7px;
+    height: 60px;
+    border-radius: 20px;
+    background-color: black;
+  }
+
+  &::before {
+    position: absolute;
+    content: '';
+    right: -3px;
+    top: $unit * 4;
+    width: 7px;
+    height: 50px;
+    border-radius: 20px;
+    background-color: black;
+  }
+}
